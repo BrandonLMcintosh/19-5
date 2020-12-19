@@ -1,5 +1,5 @@
 from boggle import Boggle
-from Flask import flask
+from flask import Flask, session, render_template
 from flask_debugtoolbar import DebugToolbarExtension
 
 boggle_game = Boggle()
@@ -10,5 +10,5 @@ debug = DebugToolbarExtension(app)
 @app.route("/")
 def index():
     session["board"] = boggle_game.make_board()
-    return render_template("base.html")
+    return render_template("index.html")
 
