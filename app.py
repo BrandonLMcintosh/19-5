@@ -11,4 +11,3 @@ debug = DebugToolbarExtension(app)
 def index():
     session["board"] = boggle_game.make_board()
     return render_template("index.html")
-
