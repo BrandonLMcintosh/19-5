@@ -97,3 +97,42 @@
 //     }
 //   }
 // }
+
+class game {
+    constructor(seconds = 60){
+        this.seconds = seconds;
+        this.words = new Set();
+        this.score = 0;
+        this.timer = setInterval(this.countdown.bind(this), 1000);
+        $("#wordForm").on("submit", this.submitWord.bind(this));
+    }
+
+    countdown(){
+        seconds -= 1;
+        this.showTime();
+        if(seconds <= 0){
+            clearInterval(this.timer)
+        }        
+    }
+
+    
+    async submitWord(evt){
+        evt.preventDefault()
+        response = await axios.get("/get_word", {params: {word: $(".word").value}});
+        console.log(response)
+    }
+
+    showTime(){
+
+    }
+
+    showWords(){
+
+    }
+
+    generateScore(){
+
+    }
+
+
+}
