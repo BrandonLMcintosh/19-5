@@ -15,6 +15,17 @@ def index():
 @app.route("/get_word")
 def get_word():
     word = request.args["word"]
+    print(word)
     board = session["board"]
     response = boggle_game.check_valid_word(board, word)
     return jsonify({"result": response})
+
+@app.route("/score", methods=["POST"])
+def score():
+    score = request.json["score"]
+    words = request.json["words"]
+    times_played = session.get("times_played", 0)
+    highscore = session.get("highscore", 0)
+    best_words = session.get("bestWords", 0)
+    session["highscore"] = max(score, highscore)
+    return jsonify(record = highscore < score)

@@ -9,3 +9,19 @@ body{
 table{
     margin-bottom: 15px;
 }
+
+.fail{
+    color: red;
+}
+
+.success{
+    color: green;
+}
+
+th{
+    border: 2px solid black;
+}
+
+td{
+    border: 1px solid black;
+}
