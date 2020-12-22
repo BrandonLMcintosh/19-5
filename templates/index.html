@@ -11,18 +11,24 @@
       <table>
         <thead>
           <tr>
-            <th>Score</td>
-            <th>High Score</td>
+            <th>Score</th>
+            <th>High Score</th>
+            <th>Times Played</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td id="score">0</td>
             <td id="highscore">{{session.get("highscore", 0)}}</td>
+            <td id="timesPlayed">{{session.get("times_played", 0)}}</td>
+          </tr>
+          <tr>
+            <th># of Words</th>
+            <th>High Score # of Words</th>
           </tr>
           <tr>
             <td id="scoreNumWords">0</td>
-            <td id="highScoreNumWords">{{session.get("high_score_plays", 0)}}</td>
+            <td id="highScoreNumWords">{{session.get("highscore_num_words", 0)}}</td>
           </tr>
         </tbody>
     </table>

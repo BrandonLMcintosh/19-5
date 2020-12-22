@@ -13,7 +13,8 @@ class Game {
         this.showTime();
         if(this.seconds <= 0){
             clearInterval(this.timer);
-            await this.generateScore();
+            await this.displayHighScore();
+            await this.done();
         }        
     }
     
@@ -34,8 +35,8 @@ class Game {
             return this.displayMessage(`${word} is not a valid word on the Boggle board`, "fail");
         }else if (response.data.result === "ok"){
             this.score += word.length;
-            this.displayScore();
             this.showWords(word);
+            this.displayScore();
             return this.displayMessage(`Added: ${word}`, "success");
         }
     }
@@ -58,10 +59,11 @@ class Game {
     };
 
     async displayScore(){
-        const numWords = this.words.length | 0;
+        const numWords = this.words.size;
+        console.log(numWords);
         $("#score").text(this.score);
         $("#scoreNumWords").text(numWords);
-        if(await isHighScore()){
+        if(await this.isHighScore()){
             $("#highscore").text(this.score);
             $("#highscoreNumWords").text(numWords);
         };
@@ -78,10 +80,15 @@ class Game {
     };
 
     async isHighScore() {
-        const wordsLength = this.words.length ? this.words.length : 0;
-        const response = await axios.post("/score", { score: this.score, words: wordsLength });
+        const wordsLength = this.words.size;
+        const response = await axios.post("/score", { score: this.score, num_words: wordsLength });
         return response.data.result;
     };
+
+    async done(){
+        const response = await axios.post("/done")
+        return
+    }
 };
 
 let game = new Game("boggle", 60)
