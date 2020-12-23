@@ -9,7 +9,7 @@ class Boggle:
 
         self.words = self.read_dict("words.txt")
 
-    def read_dict(self, dict_path): 
+    def read_dict(self, dict_path):
         """Read and return all words in dictionary."""
 
         dict_file = open(dict_path)
