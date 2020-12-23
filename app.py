@@ -34,7 +34,7 @@ def score():
     highscore_num_words = session.get("highscore_num_words", 0)
     session["highscore"] = max(score, highscore)
     session["highscore_num_words"] = max(num_words, highscore_num_words)
-    return jsonify(record=highscore < score)
+    return jsonify({"record":highscore < score})
 
 
 @app.route("/done", methods=["POST"])
