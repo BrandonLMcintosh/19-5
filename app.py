@@ -4,14 +4,16 @@ from flask_debugtoolbar import DebugToolbarExtension
 
 boggle_game = Boggle()
 app = Flask(__name__)
-app.config['SECRET_KEY'] = "ABCDEFG"
+app.config["SECRET_KEY"] = "ABCDEFG"
 debug = DebugToolbarExtension(app)
+
 
 @app.route("/")
 def index():
     """Loads the initial game board with all session values"""
     session["board"] = boggle_game.make_board()
     return render_template("index.html")
+
 
 @app.route("/get_word")
 def get_word():
@@ -22,6 +24,7 @@ def get_word():
     response = boggle_game.check_valid_word(board, word)
     return jsonify({"result": response})
 
+
 @app.route("/score", methods=["POST"])
 def score():
     """Checks and validates the highest score achieved so far and sents a bool value back to client"""
@@ -31,7 +34,8 @@ def score():
     highscore_num_words = session.get("highscore_num_words", 0)
     session["highscore"] = max(score, highscore)
     session["highscore_num_words"] = max(num_words, highscore_num_words)
-    return jsonify(record = highscore < score)
+    return jsonify(record=highscore < score)
+
 
 @app.route("/done", methods=["POST"])
 def done():
@@ -39,4 +43,4 @@ def done():
     times_played = session.get("times_played", 0)
     times_played += 1
     session["times_played"] = times_played
-    return jsonify(times_played = times_played)
+    return jsonify(times_played=times_played)

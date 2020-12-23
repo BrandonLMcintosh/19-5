@@ -1,27 +1,27 @@
-html{
-    height: 100%;
+html {
+  height: 100%;
 }
 
-body{
-    min-height: 100%;
+body {
+  min-height: 100%;
 }
 
-table{
-    margin-bottom: 15px;
+table {
+  margin-bottom: 15px;
 }
 
-.fail{
-    color: red;
+.fail {
+  color: red;
 }
 
-.success{
-    color: green;
+.success {
+  color: green;
 }
 
-th{
-    border: 2px solid black;
+th {
+  border: 2px solid black;
 }
 
-td{
-    border: 1px solid black;
+td {
+  border: 1px solid black;
 }
